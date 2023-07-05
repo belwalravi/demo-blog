@@ -3,20 +3,21 @@ const express = require("express")
 const imageUpload = require("../Helpers/Libraries/imageUpload");
 
 const {profile,editProfile,changePassword,addStoryToReadList,readListPage} = require("../Controllers/user");
-const { getAccessToRoute } = require("../Middlewares/Authorization/auth");
+// const { getAccessToRoute } = require("../Middlewares/Authorization/auth");
+const { iapJwtHandler } = require("../Middlewares/Authorization");
 
 
 const router = express.Router() ;
 
-router.get("/profile",getAccessToRoute ,profile)
+router.get("/profile",iapJwtHandler ,profile)
 
-router.post("/editProfile",[getAccessToRoute ,imageUpload.single("photo")],editProfile)
+router.post("/editProfile",[iapJwtHandler ,imageUpload.single("photo")],editProfile)
 
-router.put("/changePassword",getAccessToRoute,changePassword)
+router.put("/changePassword",iapJwtHandler,changePassword)
 
-router.post("/:slug/addStoryToReadList",getAccessToRoute ,addStoryToReadList)
+router.post("/:slug/addStoryToReadList",iapJwtHandler ,addStoryToReadList)
 
-router.get("/readList",getAccessToRoute ,readListPage)
+router.get("/readList",iapJwtHandler ,readListPage)
 
 
 

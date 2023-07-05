@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "../../Css/Login.css"
 import { Link, useNavigate } from "react-router-dom";
@@ -13,17 +13,29 @@ const LoginScreen = () => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post(
-        "/auth/login",
-        { email, password }
-      );
+      let loginData = JSON.stringify({
+        "email":email,"password":password
+      });
+      
+      let config = {
+        method: 'post',
+        url: '/auth/login',
+        headers: { 
+          'Content-Type': 'application/json'
+        },
+        data : loginData
+      };
+
+
+      const { data } = await axios.request(config)
       localStorage.setItem("authToken", data.token);
+      // localStorage.setItem("iapToken",)
 
       setTimeout(() => {
 
         navigate("/")
 
-      }, 1800)
+      }, 1500)
 
     } catch (error) {
       setError(error.response.data.error);

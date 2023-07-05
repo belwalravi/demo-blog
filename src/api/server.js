@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require("path");
+const cookieParser = require('cookie-parser');
 
 const IndexRoute = require("./Routers/index");
 const connectDatabase = require("./Helpers/database/connectDatabase");
@@ -15,6 +16,7 @@ connectDatabase();
 
 const app = express();
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 

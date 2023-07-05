@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 export const AuthContext = React.createContext();
 
@@ -17,8 +18,12 @@ const AuthContextProvider = props => {
   useEffect(() => {
 
     const controlAuth = async () => {
-      try {
+      try { 
         const { data } = await axios.get("/auth/private", config);
+        const cookies = data.headers['set-cookie'];
+        const token = Cookies.get(token)
+        // Cookies.set("authToken",cookies)
+        localStorage.setItem("authToken",token) //store iapToken to use for auth next time
         setActiveUser(data.user)
       }
       catch (error) {
