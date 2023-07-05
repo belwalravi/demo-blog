@@ -85,9 +85,9 @@ const Header = () => {
                         :
                         <div className="noAuth_options">
 
-                            <Link className='login-link' to="/login"> Login </Link>
+                            {/* <Link className='login-link' to="/login"> Login </Link> */}
 
-                            <Link className='register-link' to="/register"> Get Started</Link>
+                            {/* <Link className='register-link' to="/register"> Get Started</Link> */}
                         </div>
 
                     }
