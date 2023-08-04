@@ -208,3 +208,25 @@ header .logo h5 {
     height: 24px;
     text-align: center;
 }
+.noAuth_options{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-right: 20px;
+}
+.noAuth_options img {
+    border-radius: 50%;
+    width: 52px;
+    cursor: pointer;
+   /* height: 52px;
+    margin-top: 3px; */
+    align-items: center;
+    justify-content: center;
+ 
+  }
+.noAuth_options h5 {
+    font-weight: bold; 
+    /* letter-spacing: 0.7px; */
+     margin-top: 3px;
+  }
+  

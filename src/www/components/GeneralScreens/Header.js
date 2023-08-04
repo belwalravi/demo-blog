@@ -38,8 +38,7 @@ const Header = () => {
 
                 <Link to="/" className="logo">
                     <h5>
-                        TECH BLOG
-
+                    {process.env.orgName ? process.env.orgName : "Org Name"}
                     </h5>
                 </Link>
                 <SearchForm />
@@ -88,6 +87,8 @@ const Header = () => {
                             {/* <Link className='login-link' to="/login"> Login </Link> */}
 
                             {/* <Link className='register-link' to="/register"> Get Started</Link> */}
+                            <h5>{process.env.userName ? process.env.userName : "User Name"}</h5>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/The_logo_without_text_-_with_background.jpg" alt="Image" />
                         </div>
 
                     }
