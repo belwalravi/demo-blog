@@ -1,8 +1,10 @@
 .notFound {
     height: 720px;
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    color: #fff;
     overflow: hidden;
     position: fixed;
+    padding: 25px;
     width: 100%;
     top: 0;
     left: 0;

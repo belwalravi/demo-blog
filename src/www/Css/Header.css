@@ -208,3 +208,15 @@ header .logo h5 {
     height: 24px;
     text-align: center;
 }
+
+.logo_header{
+    width: 3.7rem;
+    height: 3.7rem;
+    padding-top: 2px;
+}
+
+.noAuth_options{
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}

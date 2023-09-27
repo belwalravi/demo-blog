@@ -16,6 +16,7 @@ import ChangePassword from './components/ProfileScreens/ChangePassword';
 import NotFound from './components/GeneralScreens/NotFound';
 import EditStory from './components/StoryScreens/EditStory';
 import ReadListPage from './components/ProfileScreens/ReadListPage';
+import Unauthorized from './components/GeneralScreens/Unauthorized';
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
                               <Route path="/" element={<LayoutsWithHeader />}>
 
                                     <Route path='*' element={<NotFound />} />
+                                    <Route path='/unauthorized' element={<Unauthorized />} />                                    
 
                                     <Route exact path='/' element={<PrivateRoute />}>
                                           <Route exact path='/' element={<Home />} />

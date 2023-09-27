@@ -24,8 +24,6 @@ const Header = () => {
     useEffect(async () => {
         const autoLoginHandler = async () => {
             try {
-                console.log("header auth <<")
-
                 let loginData = JSON.stringify({
                     "email": "letslearngcp2@gmail.com", "password": "123456"
                 });
@@ -49,21 +47,21 @@ const Header = () => {
                 }
 
                 const { data } = await axios.request(config)
-                console.log(data,"<<")
+                console.log(data,"<<**")
                 console.log("yeh authToken localstorage mai stored kiya hai abhi (token) >> ", data)
                 localStorage.setItem("authToken", data.token);
                 setToken(data.token)
-
                 setTimeout(() => {
                     navigate("/")
                 }, 1800)
 
             } catch (error) {
                 // setError(error.response.data.error);
-                setTimeout(() => {
-                    // setError("");
-                    console.log(">>",error)
-                }, 4500);
+                navigate("/unauthorized")
+                // setTimeout(() => {
+                //     // setError("");
+                //     // console.log(">>",error)
+                // }, 500);
             }
         };
 
@@ -115,7 +113,9 @@ const Header = () => {
                 <SearchForm />
                 <div className='header_options'>
                     {auth ?
-                        <div className="auth_options">
+                        <div className="auth_options" style={{"display": "flex",
+                            "flexDirection": "column",
+                            "alignItems": "center"}}>
                             <Link className='addStory-link' to="/addstory"><RiPencilFill /> Write </Link>
                             <Link to="/readList" className='readList-link'>
                                 <BsBookmarks />

@@ -3,7 +3,7 @@ import '../../Css/Footer.css'
 
 const Footer = () => {
     return (
-        <div>
+        <div style={{"textAlign": "center"}}>
             <div className="footer">
             </div>
             <div className="copyright">

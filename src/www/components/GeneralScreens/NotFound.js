@@ -2,9 +2,9 @@ import React from "react";
 import "../../Css/NotFound.css"
 const NotFound = () => (
   <>
-    <div className="notFound">
-      <div className='title'>
-        <span className="text404">
+    {/* <div className="notFound">
+      <div >
+        <span >
           404
         </span>
         <br />
@@ -12,8 +12,11 @@ const NotFound = () => (
           PAGE NOT FOUND
         </span>
       </div>
-    </div>
-
+    </div> */}
+  <div className="notFound">
+    <h1>404 - Not Found</h1>
+    <p>The resource you are looking for does not exist.</p>
+  </div>
   </>
 
 );
