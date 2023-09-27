@@ -16,7 +16,7 @@ const getAccessTokenFromHeader = (req) => {
 }
 
 const sendToken = (user,statusCode ,res)=>{
-
+    console.log("token sent")
     const token = user.generateJwtFromUser()
 
     return res.status(statusCode).json({

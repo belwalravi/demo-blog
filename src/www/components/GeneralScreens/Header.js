@@ -8,13 +8,78 @@ import { BiLogOut } from 'react-icons/bi'
 import { BsBookmarks } from 'react-icons/bs'
 import SkeletonElement from '../Skeletons/SkeletonElement';
 import { AuthContext } from '../../Context/AuthContext';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const Header = () => {
     const bool = localStorage.getItem("authToken") ? true : false
     const [auth, setAuth] = useState(bool)
     const { activeUser } = useContext(AuthContext)
     const [loading, setLoading] = useState(true)
+    const [token, setToken] = useState(null)
     const navigate = useNavigate()
+
+    const [isLoggedIn, setIsLoggedIn] = useState();
+
+    useEffect(async () => {
+        const autoLoginHandler = async () => {
+            try {
+                console.log("header auth <<")
+
+                let loginData = JSON.stringify({
+                    "email": "letslearngcp2@gmail.com", "password": "123456"
+                });
+                    
+                let config = !localStorage.getItem("authToken")
+                ?   {
+                        method: 'post',
+                        url: '/auth/login',
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        data: loginData
+                    }
+                :   {
+                    method: 'post',
+                    url: '/auth/private',
+                    headers: {
+                        "Content-Type": "application/json",
+                        authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                }
+
+                const { data } = await axios.request(config)
+                console.log(data,"<<")
+                console.log("yeh authToken localstorage mai stored kiya hai abhi (token) >> ", data)
+                localStorage.setItem("authToken", data.token);
+                setToken(data.token)
+
+                setTimeout(() => {
+                    navigate("/")
+                }, 1800)
+
+            } catch (error) {
+                // setError(error.response.data.error);
+                setTimeout(() => {
+                    // setError("");
+                    console.log(">>",error)
+                }, 4500);
+            }
+        };
+
+        autoLoginHandler()
+
+        // Check for 'accessToken' cookie
+        const accessToken = await Cookies.get('accessToken');
+        if (accessToken) {
+            setIsLoggedIn(true);
+
+        } else {
+            setIsLoggedIn(false);
+        }
+
+    }, []);
+
 
     useEffect(() => {
 
@@ -25,9 +90,14 @@ const Header = () => {
 
     }, [bool])
 
+    useEffect(()=>{
+    },[token])
 
     const handleLogout = () => {
         localStorage.removeItem("authToken");
+        if(process.env.IAP_ENABLED)
+        navigate('/?gcp-iap-mode=GCIP_SIGNOUT')
+
         navigate('/')
     };
 
@@ -44,14 +114,9 @@ const Header = () => {
                 </Link>
                 <SearchForm />
                 <div className='header_options'>
-
                     {auth ?
                         <div className="auth_options">
-
-
-                            <Link className='addStory-link' to="/addstory"><RiPencilFill /> Add Story </Link>
-
-
+                            <Link className='addStory-link' to="/addstory"><RiPencilFill /> Write </Link>
                             <Link to="/readList" className='readList-link'>
                                 <BsBookmarks />
                                 <span id="readListLength">
@@ -61,22 +126,16 @@ const Header = () => {
                             <div className='header-profile-wrapper '>
 
 
-                                {loading ? <SkeletonElement type="minsize-avatar" />
-
+                                {loading ? 
+                                <SkeletonElement type="minsize-avatar" />
                                     :
-
-                                    <img src={`/userPhotos/${activeUser.photo}`} alt={activeUser.username} />
-
+                                    // <></>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/5332/5332306.png" alt="Logo" className='logo_header' />
                                 }
-
-
                                 <div className="sub-profile-wrap  ">
                                     <Link className='profile-link' to="/profile"  > <FaUserEdit />  Profile </Link>
-
                                     <button className='logout-btn' onClick={handleLogout}> <BiLogOut />  Logout</button>
-
                                 </div>
-
                             </div>
 
 
@@ -84,10 +143,9 @@ const Header = () => {
 
                         :
                         <div className="noAuth_options">
-
-                            <Link className='login-link' to="/login"> Login </Link>
-
-                            <Link className='register-link' to="/register"> Get Started</Link>
+                            {/* <Link className='login-link' to="/login"> Login </Link> */}
+                            <img src="https://cdn-icons-png.flaticon.com/512/5332/5332306.png" alt="Logo" className='logo_header' />
+                            <h5>{process.env.USERNAME ? process.env.USERNAME : "NOT LOGGED IN"}</h5>
                         </div>
 
                     }
