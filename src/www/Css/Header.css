@@ -220,3 +220,7 @@ header .logo h5 {
     flex-direction: column;
     align-items: center
 }
+
+.auth_options{
+    flex-direction: row;
+}

@@ -114,7 +114,7 @@ const Header = () => {
                 <div className='header_options'>
                     {auth ?
                         <div className="auth_options" style={{"display": "flex",
-                            "flexDirection": "column",
+                            "flexDirection": "row",
                             "alignItems": "center"}}>
                             <Link className='addStory-link' to="/addstory"><RiPencilFill /> Write </Link>
                             <Link to="/readList" className='readList-link'>
