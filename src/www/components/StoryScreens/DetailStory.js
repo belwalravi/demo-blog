@@ -40,6 +40,7 @@ const DetailStory = () => {
 
       }
       catch (error) {
+        // navigate("/unauthorized")
         setActiveUser({})
       }
 

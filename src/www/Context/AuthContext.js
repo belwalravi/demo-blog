@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+// import { Link, useNavigate } from "react-router-dom";
 
 export const AuthContext = React.createContext();
-
+// const navigate = useNavigate()
 const AuthContextProvider = props => {
 
   const [activeUser, setActiveUser] = useState({})
@@ -24,7 +25,7 @@ const AuthContextProvider = props => {
       catch (error) {
 
         localStorage.removeItem("authToken");
-
+        // navigate("/unauthorized")
         setActiveUser({})
       }
     };
