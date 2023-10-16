@@ -66,8 +66,8 @@ const performAuth = asyncErrorWrapper(async (req, res, next) => {
         req.user = user;
         sendToken(user, 200, req);
     } catch (error) {
-        new CustomError("Error occurred while processing request", 500)
         console.log(error);
+        new CustomError("Error occurred while processing request", 500)
     }
 });
 module.exports = { performAuth };
