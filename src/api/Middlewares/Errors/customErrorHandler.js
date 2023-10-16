@@ -24,12 +24,12 @@ const customErrorHandler = (err,req,res,next)=> {
         err = new CustomError("Jwt expired  ", 401)
     }
     if (err.name === "JsonWebTokenError") {
+        console.log("err stack >> ", err)
         err = new CustomError("Jwt malformed  ", 401)
 
     }
 
     console.log("Custom Error Handler => ", err.name, err.message, err.statusCode)
-    console.log("err stack >> ", err)
   
     return res.status(err.statusCode||500)
     .json({
