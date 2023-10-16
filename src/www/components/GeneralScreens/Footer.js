@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="footer">
             </div>
             <div className="copyright">
-                <p className="copyright-blog">© {new Date().getFullYear()} Tech Blogs. All Rights Reserved</p>
+                <p className="copyright-blog">© {new Date().getFullYear()}, All Rights Reserved</p>
             </div>
             {/* <div className="cluster-info">
                 {process.env.CLUSTER_NAME ? process.env.CLUSTER_NAME : "CLUSTER_NAME"} &nbsp;
