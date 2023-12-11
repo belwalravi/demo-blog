@@ -29,7 +29,7 @@ const customErrorHandler = (err,req,res,next)=> {
 
     console.log("Custom Error Handler => ", err.name, err.message, err.statusCode)
     console.log("--> ",err.statusCode)
-    console.log("err stack >> ", err)
+    // console.log("err stack >> ", err)
   
     return res.status(err.statusCode||500)
     .json({

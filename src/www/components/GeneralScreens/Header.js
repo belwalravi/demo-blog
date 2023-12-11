@@ -106,8 +106,7 @@ const Header = () => {
 
                 <Link to="/" className="logo">
                     <h5>
-                        TECH BLOG
-
+                        DemoApp
                     </h5>
                 </Link>
                 <SearchForm />
@@ -144,8 +143,8 @@ const Header = () => {
                         :
                         <div className="noAuth_options">
                             {/* <Link className='login-link' to="/login"> Login </Link> */}
-                            <img src="https://cdn-icons-png.flaticon.com/512/5332/5332306.png" alt="Logo" className='logo_header' />
-                            <h5>{process.env.USERNAME ? process.env.USERNAME : "NOT LOGGED IN"}</h5>
+                            <img src='./user-i.png' alt="Logo" className='logo_header'/>
+                            <h5 style={{"fontSize":"1em"}}>{process.env.USERNAME ? process.env.USERNAME : ""}</h5>
                         </div>
 
                     }

@@ -2,13 +2,13 @@ import React from "react";
 import "../../Css/NotFound.css"
 const Unauthorized = () => (
   <>
-    <div className="f" style={{"textAlign":"center","padding-top":"5vh","padding-bottom":"70vh"}}>
+    <div className="f" style={{"textAlign":"center","paddingTop":"5vh","paddingBottom":"70vh"}}>
       <div>
         <span>
           UNAUTHORIZED ACCESS
+          <p style={{"paddingTop":"10px"}}>You are not logged in. Please log in to access this content.</p><br/>
         </span>
-        <br/>
-        <a href="/?gcp-iap-mode=GCIP_SIGNOUT" style={{"text-decoration":"none"}}>Login</a>
+        <a href="/?gcp-iap-mode=GCIP_SIGNOUT" style={{"textDecoration":"none"}}>Login</a>
       </div>
     </div>
 

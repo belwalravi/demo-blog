@@ -35,8 +35,10 @@ const PrivateRoute =( ) => {
             setAuth(false)
             setActiveUser({})
 
-            navigate("/")
-            // navigate("/unauthorized")
+            console.log("GCIP_SIGNOUT")
+            navigate("/?gcp-iap-mode=GCIP_SIGNOUT")
+            // navigate("/")
+            // navigate("/unauthorized") //#
             setError("You are not authorized please login"); 
         }
         };
