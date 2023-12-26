@@ -11,6 +11,7 @@ import { AuthContext } from '../../Context/AuthContext';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+
 const Header = () => {
     const bool = localStorage.getItem("authToken") ? true : false
     const [auth, setAuth] = useState(bool)
@@ -22,6 +23,7 @@ const Header = () => {
     const [isLoggedIn, setIsLoggedIn] = useState();
 
     useEffect(async () => {
+        console.log("autoLogin")
         const autoLoginHandler = async () => {
             try {
                 let loginData = JSON.stringify({
@@ -47,8 +49,7 @@ const Header = () => {
                 }
 
                 const { data } = await axios.request(config)
-                console.log(data,"<<**")
-                console.log("yeh authToken localstorage mai stored kiya hai abhi (token) >> ", data)
+                console.log(data,"<")
                 localStorage.setItem("authToken", data.token);
                 setToken(data.token)
                 setTimeout(() => {
@@ -96,7 +97,7 @@ const Header = () => {
         if(process.env.IAP_ENABLED)
         navigate('/?gcp-iap-mode=GCIP_SIGNOUT')
 
-        navigate('/')
+        // navigate('/')
     };
 
     return (
@@ -106,7 +107,7 @@ const Header = () => {
 
                 <Link to="/" className="logo">
                     <h5>
-                        DemoApp
+                        {process.env?.REACT_APP_APP_HEADER || "DEMOAPP"}
                     </h5>
                 </Link>
                 <SearchForm />
@@ -143,7 +144,7 @@ const Header = () => {
                         :
                         <div className="noAuth_options">
                             {/* <Link className='login-link' to="/login"> Login </Link> */}
-                            <img src='./user-i.png' alt="Logo" className='logo_header'/>
+                            <img src='./user-i.png' alt="Logo" className='logo_header' style={{"cursor":"pointer"}}/>
                             <h5 style={{"fontSize":"1em"}}>{process.env.USERNAME ? process.env.USERNAME : ""}</h5>
                         </div>
 
